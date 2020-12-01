@@ -4,10 +4,20 @@ import {Button} from '@material-ui/core';
 import './Home.css'
 
 class Checkout extends Component{
+	state={
+		total:this.props.location.state.total
+	}
 
 	check=()=>{
 		alert("Thank you for dining with us!");
 		this.props.history.push('/');
+	}
+	add=()=>{
+		let t=this.props.location.state.total;
+		let total=this.state.total;
+		t=(0.05*t);
+		total+=t;
+		this.setState({total:total});
 	}
 
 	render(){
@@ -25,7 +35,8 @@ class Checkout extends Component{
 				</div>
 				)}
 				</div>
-				<h2>Total:{this.props.location.state.total}</h2>
+				<h2>Total:{this.state.total}</h2>
+				<Button variant='contained' style={{marginRight:'10px'}} color='primary' onClick={this.add}>Add tip (5% of the Bill)</Button>
 				<Button variant='contained' color='primary' onClick={this.check}>Checkout</Button>
 				</div>)
 		}

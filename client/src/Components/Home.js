@@ -8,7 +8,6 @@ class Home extends Component{
 	state={
 		foodList:[],
 		cart:[],
-		toShow:false,
 		total:0
 	}
 	componentDidMount(){
@@ -24,7 +23,7 @@ class Home extends Component{
 		cart.push(u);
 		let total=this.state.total;
 		total+=u.price;
-		this.setState({cart:cart,total:total,toShow:true});
+		this.setState({cart:cart,total:total});
 	}
 	
 	show=()=>{
@@ -36,12 +35,6 @@ class Home extends Component{
       		});
 	}
 	render(){
-		let tr='';
-		if(this.state.toShow){
-			tr=<FlashMessage duration={1000}>
-    				<strong>I will disapper in 5 seconds!</strong>
-  				</FlashMessage>
-		}
 		return(
 			<div>
 		<h1>Welcome to Simple Restaurant App</h1>
@@ -56,7 +49,6 @@ class Home extends Component{
 				)}
 			</div>
 			<Button variant='contained' onClick={this.show}>Go to checkout page</Button>
-			{tr}
 			</div>
 		)
 	}
